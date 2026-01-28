@@ -1,0 +1,114 @@
+/* ================= GLOBAL ================= */
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: #12181f;
+  color: white;
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= TEXT ================= */
+h1 {
+  text-align: center;
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 50px);
+  margin: 20px 0 10px;
+}
+
+p {
+  text-align: center;
+  font-size: clamp(16px, 3.5vw, 30px);
+  font-weight: bold;
+  margin: 0 0 20px;
+}
+
+/* ================= BUTTON ================= */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.actions button {
+  padding: 8px 16px;
+  font-size: clamp(16px, 4vw, 30px);
+  border-radius: 10px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* ================= GRID (FIX 3 x 6) ================= */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+  grid-template-rows: repeat(6, 1fr);    /* 6 baris */
+  gap: 16px;
+  width: min(90vw, 900px);
+  margin: 0 auto 30px;
+  padding: 16px;
+}
+
+/* ================= CARD (4 x 6) ================= */
+.card {
+  width: 100%;
+  aspect-ratio: 4 / 6; /* rasio foto 4x6 */
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  backface-visibility: hidden;
+}
+
+/* ================= FRONT ================= */
+.card .front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+}
+
+.front-image {
+  width: 50%;
+  max-width: 80px;
+  height: auto;
+}
+
+/* ================= BACK ================= */
+.card .back {
+  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='25' height='25' patternTransform='scale(2) rotate(0)'><rect width='100%' height='100%' fill='hsla(0,0%,100%,1)'/><path d='M25 30a5 5 0 110-10 5 5 0 010 10zm0-25a5 5 0 110-10 5 5 0 010 10zM0 30a5 5 0 110-10 5 5 0 010 10zM0 5A5 5 0 110-5 5 5 0 010 5zm12.5 12.5a5 5 0 110-10 5 5 0 010 10z' fill='hsla(174,100%,29%,1)'/><path d='M0 15a2.5 2.5 0 110-5 2.5 2.5 0 010 5zm25 0a2.5 2.5 0 110-5 2.5 2.5 0 010 5zM12.5 2.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5zm0 25a2.5 2.5 0 110-5 2.5 2.5 0 010 5z' fill='hsla(187,100%,42%,1)'/></pattern></defs><rect width='800%' height='800%' fill='url(%23a)'/></svg>");
+  background-position: center;
+  background-size: cover;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 480px) {
+  .grid-container {
+    gap: 8px;
+  }
+
+  .front-image {
+    max-width: 50px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
